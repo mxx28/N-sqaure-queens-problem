@@ -242,9 +242,9 @@ At each iteration:
 
 3. **Accept** with probability
 
-   $$
-   \alpha(s \to s') = \min\left(1, e^{-\beta \Delta E}\right)
-   $$
+$$
+\alpha(s \to s') = \min\left(1, e^{-\beta \Delta E}\right)
+$$
 
 This is the standard Metropolis–Hastings rule with a **symmetric** proposal distribution.
 
@@ -254,21 +254,29 @@ The inverse temperature `β` is updated over time according to different schedul
 
 * **Fixed**:
 
-  `β(t) = β0`.
+$$
+\beta(t) = \beta_0
+$$
 
 * **Exponential**:
 
-  `β(t) = β0 · c^t`, with `c > 1`.
+$$
+\beta(t) = \beta_0 \cdot c^t, \quad c > 1
+$$
 
 * **Geometric**:
 
-  `β(t)` increases smoothly from `β0` to `β_end`.
+$$
+\beta(t) = \beta_0 \cdot \left(\frac{\beta_{\text{end}}}{\beta_0}\right)^{t/T_{\max}}
+$$
+
+where `β(t)` increases smoothly from `β₀` to `β_end` over `T_max` iterations.
 
 * **Logarithmic**:
 
-  $$
-  \beta(t) = \beta_0 \cdot \frac{\log(1 + t)}{\log(1 + T_{\max})}
-  $$
+$$
+\beta(t) = \beta_0 \cdot \frac{\log(1 + t)}{\log(1 + T_{\max})}
+$$
 
 Early iterations (small `β`) allow broad exploration; later iterations (large `β`) concentrate around low-energy configurations.
  
