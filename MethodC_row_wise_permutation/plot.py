@@ -52,11 +52,23 @@ def plot_energy_curve_average(N, energies_matrix, mean_energy, std_energy):
     plt.legend()
 
 def compare_annealing_effect(N, beta_fix, beta_annealing_start, beta_annealing_end, max_steps, runs, base_seed=None, cooling_rate=1.001):
+    # setups = [
+    #     ("fixed β={}".format(beta_fix), "fixed", beta_fix),
+    #     # ("fixed β={}".format(beta_fix2), "fixed", beta_fix2),
+    #     ("geometric start from β={} to β={}".format(beta_annealing_start, beta_annealing_end), "geometric", beta_annealing_start, beta_annealing_end),
+    # ]
     setups = [
-        ("fixed β={}".format(beta_fix), "fixed", beta_fix),
-        # ("fixed β={}".format(beta_fix2), "fixed", beta_fix2),
-        ("geometric start from β={} to β={}".format(beta_annealing_start, beta_annealing_end), "geometric", beta_annealing_start, beta_annealing_end),
-    ]
+    ("fixed β={}".format(beta_fix), "fixed", beta_fix),
+
+    ("exponential β={} → {}".format(beta_annealing_start, beta_annealing_end),
+        "exponential", beta_annealing_start, beta_annealing_end),
+
+    ("geometric β={} → {}".format(beta_annealing_start, beta_annealing_end),
+        "geometric", beta_annealing_start, beta_annealing_end),
+
+    ("logarithmic β={} → {}".format(beta_annealing_start, beta_annealing_end),
+        "log", beta_annealing_start, beta_annealing_end),
+]
 
     plt.figure(figsize=(7, 4))
     steps = np.arange(max_steps + 1)
@@ -68,7 +80,7 @@ def compare_annealing_effect(N, beta_fix, beta_annealing_start, beta_annealing_e
             beta = setup[2]
             beta_end = None
         else:
-            # Geometric schedule: (label, "geometric", beta_start, beta_end)
+            # Geometric/Exponential/Logarithmic schedule: (label, "geometric", beta_start, beta_end)
             beta = setup[2]
             beta_end = setup[3]
         
