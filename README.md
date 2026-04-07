@@ -2,7 +2,7 @@
 
 This repository implements **Markov Chain Monte Carlo** (MCMC) methods for the 3D (N²)-Queens problem using the **Metropolis–Hastings** algorithm with **simulated annealing**.
 
-We provide **three different state representations** (and corresponding move proposals) that explore the same energy landscape in different ways.
+We provide **three different state representations** (and corresponding move proposals) that explore the same energy landscape in different ways. Enjoy!
 
 
 
